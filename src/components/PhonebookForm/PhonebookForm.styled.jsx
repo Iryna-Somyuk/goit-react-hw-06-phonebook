@@ -26,7 +26,6 @@ export const Input = styled(Field)`
   border: 1px solid black;
   border-radius: 4px;
   width: 300px;
-
 `;
 
 // export const Input = styled.input`
@@ -35,7 +34,6 @@ export const Input = styled(Field)`
 //   border: 1px solid black;
 //   border-radius: 4px;
 // `;
-
 
 export const ErrorMes = styled(ErrorMessage)`
   font-weight: 400;

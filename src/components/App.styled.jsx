@@ -1,7 +1,6 @@
 import styled from '@emotion/styled';
 
 export const Сontainer = styled.div`
-  // padding: 8 px;
   display: flex;
   flex-direction: column;
   gap: 20px;
