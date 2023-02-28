@@ -5,7 +5,7 @@ export const ContactItem = styled.li`
   flex-direction: row;
   gap: 20px;
   align-items: center;
-  justify-content: space-between;
+  // justify-content: space-between;
 `;
 export const ContactInfo = styled.span`
   font-size: 16px;

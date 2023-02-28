@@ -1,9 +1,13 @@
-import PropTypes from 'prop-types';
-
 
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import { FormContainer, Label, Input, ErrorMes, Btn } from './PhonebookForm.styled';
+import { useSelector, useDispatch } from 'react-redux';
+import { addContact } from 'redux/contactSlice';
+import { getContacts } from 'redux/selector';
+import toast, { Toaster } from 'react-hot-toast';
+
+
 
 const schema = yup.object().shape({
   name: yup.string().required(),
@@ -15,14 +19,26 @@ const initialValues = {
   number: '',
 };
 
-export const PhonebookForm = ({ onSubmit }) => {
+export const PhonebookForm = () => {
+const contacts = useSelector(getContacts);
+  const dispatch = useDispatch();
   const handleSubmit = (values, {resetForm}) => {
     console.log(values);
+if(contacts.find(contact => contact.name === values.name)){
+  toast.error(
+    'Attention, this contact is already in the phonebook!',
+    {
+      duration: 4000,
+    }
+  );
+  return;
+}
+dispatch(addContact(values));
 
-    onSubmit(values);
     resetForm();
   }
     return (
+      <>
       <Formik initialValues ={initialValues} validationSchema={schema} onSubmit={handleSubmit}>
       <FormContainer>
         <Label>
@@ -50,12 +66,11 @@ export const PhonebookForm = ({ onSubmit }) => {
         <Btn type="submit">Add contact</Btn>
       </FormContainer>
       </Formik>
+          <Toaster position="top-center" reverseOrder={true} />
+          </>
     );
   };
 
-PhonebookForm.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
-}
 
 // Ванільна форма
 // export const PhonebookForm = ({ onSubmit }) => {

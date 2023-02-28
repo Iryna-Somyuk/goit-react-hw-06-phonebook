@@ -25,6 +25,8 @@ export const Input = styled(Field)`
   font-size: 16px;
   border: 1px solid black;
   border-radius: 4px;
+  width: 300px;
+
 `;
 
 // export const Input = styled.input`
